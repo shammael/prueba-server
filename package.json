@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "helmet": "^6.1.5",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.6.1",
+    "typescript": "^5.0.4",
+    "ws": "^8.13.0",
+    "zod": "^3.21.4"
+  },
+  "scripts": {
+    "test": "vitest",
+    "dev": "nodemon"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/ws": "^8.5.4",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "vitest": "^0.30.1"
+  }
+}
