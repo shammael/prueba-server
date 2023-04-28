@@ -16,7 +16,9 @@
   },
   "scripts": {
     "test": "vitest",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node ./build/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
