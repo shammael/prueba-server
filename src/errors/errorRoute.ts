@@ -1,14 +1,19 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import BadRequestError from "./BadRequestError";
+import TooManyRequestError from "./TooManyRequest.error";
 
-const errorRoute = (err: Error, req: Request, res: Response) => {
-  console.log("first");
+const errorRoute = (
+  err: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   if (err instanceof ZodError) {
     return res.status(400).json(err.message);
   }
 
-  if (err instanceof BadRequestError) {
+  if (err instanceof BadRequestError || err instanceof TooManyRequestError) {
     return res.status(res.statusCode).json({ message: err.message });
   }
 

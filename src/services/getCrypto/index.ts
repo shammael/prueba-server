@@ -10,15 +10,11 @@ const hashedMap = {
 const getCryptoService = async (
   value: CryptoData.Bitcoin | CryptoData.Cardano | CryptoData.Ethereum
 ) => {
-  try {
-    const resp = await fetch(
-      `https://data.messari.io/api/v1/assets/${hashedMap[value]}/metrics/market-data`
-    );
-    const res = await resp.json();
-    return cryptoAdapter(res.data);
-  } catch (error) {
-    throw new Error("An error have been occured");
-  }
+  const resp = await fetch(
+    `https://data.messari.io/api/v1/assets/${hashedMap[value]}/metrics/market-data`
+  );
+  const res = await resp.json();
+  return cryptoAdapter(res.data);
 };
 
 export default getCryptoService;

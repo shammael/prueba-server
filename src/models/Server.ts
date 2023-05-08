@@ -4,7 +4,7 @@ import http from "http";
 import helmet from "helmet";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-import { getDataMiddleware } from "../controllers/sockets";
+import { getMetricController, priceController } from "../controllers/sockets";
 import calculatorRoute from "../routes/index";
 import errorRoute from "../errors/errorRoute";
 
@@ -43,13 +43,15 @@ class Server {
     if (!this.instance) {
       this.instance = new this();
     }
-
     return this.instance;
   }
 
   private sockets() {
-    console.log("sd");
-    this.io.of("/api/v1/stream").on("connection", getDataMiddleware);
+    // this.io.of("/api/v1/stream").on("connection", getDataMiddleware);
+    this.io.of("/api/v1/stream/metric").on("connection", getMetricController);
+    this.io
+      .of("/api/v1/stream/bi")
+      .on("connection", (client) => priceController(client, this.io));
   }
 
   private middlewares() {
